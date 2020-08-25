@@ -4,7 +4,7 @@
 
 ​	前端：vue，element-ui
 
-​	后端：springboot,mysql,shiro
+​	后端：springboot, mysql, shiro
 
 ## 模块
 
