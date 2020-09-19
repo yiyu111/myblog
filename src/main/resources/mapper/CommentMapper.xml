@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yiyu.mapper.CommentMapper">
+    <select id="selectByBlogId" resultType="com.yiyu.entity.Comment">
+        select c.id, c.content, c.user_id, c.blog_id, c.creat_time
+        from comment c left join blog b on c.blog_id = b.id where blog_id=#{blogId};
+    </select>
+
+    <select id="selectByUserId" resultType="com.yiyu.entity.Comment">
+        select c.id, c.content, c.user_id, c.blog_id, c.creat_time
+        from comment c left join user u on c.user_id = u.id where user_id=#{userId};
+    </select>
+</mapper>
