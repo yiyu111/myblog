@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2020-08-24
  */
 @RestController
-@RequestMapping("/syslog")
+@RequestMapping("api/syslog")
 public class SyslogController {
     @Autowired
     SyslogServiceImpl syslogService;
