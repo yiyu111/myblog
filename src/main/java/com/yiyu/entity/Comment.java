@@ -29,7 +29,7 @@ public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Tag id;
+    private Integer id;
 
     @NotBlank(message = "内容不能为空")
     private String content;

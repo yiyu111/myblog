@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class BlogServiceImplTest {
 
@@ -18,6 +20,7 @@ class BlogServiceImplTest {
     @Test
     void page() {
         IPage<Blog> page = blogService.page(new Page<>(1, 5));
-        System.out.println(page.getRecords());
+        List<Blog> records = page.getRecords();
+        System.out.println(records);
     }
 }

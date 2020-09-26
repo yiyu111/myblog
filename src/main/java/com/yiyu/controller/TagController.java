@@ -45,4 +45,12 @@ public class TagController {
         return ResultEntity.success("添加成功");
     }
 
+    @Log(businessType = BusinessTybe.DELETE,targetType = TargetType.Tag)
+    @RequiresRoles(RoleConstant.ADMIN)
+    @DeleteMapping("/delete")
+    public ResultEntity delete(int id){
+        tagService.removeById(id);
+        return  ResultEntity.success("删除成功");
+    }
+
 }

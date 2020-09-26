@@ -1,8 +1,11 @@
 package com.yiyu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yiyu.entity.Blog;
+import com.yiyu.entity.BlogTag;
+import com.yiyu.entity.Tag;
 import com.yiyu.mapper.BlogMapper;
 import com.yiyu.mapper.BlogTagMapper;
 import com.yiyu.mapper.TagMapper;
@@ -33,9 +36,16 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
 
     @Override
     public IPage<Blog> page(IPage<Blog> page) {
-        IPage<Blog> blogipage = super.page(page);
+        List<Blog> blogipage = blogMapper.page(page);
+        page.setRecords(blogipage);
+        return page;
+    }
 
-        return blogipage;
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteById(int id) {
+        blogMapper.deleteById(id);
+        blogTagMapper.delete(new QueryWrapper<BlogTag>().eq("blog_id",id));
     }
 
     @Override
@@ -46,6 +56,14 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean save(Blog entity) {
-        return  super.save(entity);
+        boolean save = super.save(entity);
+        List<Tag> tags = entity.getTags();
+        for (Tag tag : tags) {
+            BlogTag blogTag = new BlogTag();
+            blogTag.setTagId(tag.getId());
+            blogTag.setBlogId(entity.getId());
+            blogTagMapper.insert(blogTag);
+        }
+        return  save;
     }
 }

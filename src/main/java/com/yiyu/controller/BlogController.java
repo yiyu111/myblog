@@ -60,7 +60,7 @@ public class BlogController {
     @RequiresRoles(RoleConstant.ADMIN)
     @DeleteMapping("/delete")
     public ResultEntity delete(int id){
-        blogService.removeById(id);
+        blogService.deleteById(id);
         return ResultEntity.success("删除成功");
     }
 }

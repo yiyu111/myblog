@@ -9,7 +9,7 @@
         <result column="title" property="title"/>
         <result column="bdescription" property="description"/>
         <result column="user_id" property="userId"/>
-        <collection property="tags" ofType="com.yiyu.entity.Tag" >
+        <collection property="tags" javaType="java.util.List" ofType="com.yiyu.entity.Tag" >
             <id property="id" column="tid"/>
             <result column="name" property="name" />
             <result column="tdescription" property="description" />
@@ -17,7 +17,7 @@
     </resultMap>
 
     <select id="selectByUserId" resultType="com.yiyu.entity.Blog">
-        select b.id bid, b.content ,b.title ,b.description bdescription,b.creat_time,b.user_id,t.id tid,t.name,t.description tdescription
+        select b.id 'bid', b.content ,b.title ,b.description 'bdescription',b.creat_time,b.user_id,t.id 'tid',t.name,t.description 'tdescription'
             from blog b
             left join blog_tag bt on b.id = bt.blog_id
             left join tag t on bt.tag_id = t.id
@@ -25,7 +25,7 @@
     </select>
 
     <select id="page" resultMap="blogResultMap">
-        select b.id, b.content,b.title,b.description,b.creat_time,b.user_id ,t.id,t.name,t.description
+        select b.id 'bid', b.content ,b.title ,b.description 'bdescription',b.creat_time,b.user_id,t.id 'tid',t.name,t.description 'tdescription'
             from blog b
             left join blog_tag bt on b.id = bt.blog_id
             left join tag t on bt.tag_id = t.id

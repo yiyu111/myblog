@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface BlogService extends IService<Blog> {
 
+    void deleteById(@Param("id") int id);
 
-
-    public List<Blog> selectByUserId(@Param("userId")int userId);
+    List<Blog> selectByUserId(@Param("userId")int userId);
 }
