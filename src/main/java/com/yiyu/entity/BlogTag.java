@@ -26,15 +26,15 @@ public class BlogTag implements Serializable {
     /**
      * 博客id
      */
-    private int blogId;
+    private Integer blogId;
 
     /**
      * 标签id
 
      */
-    private int tagId;
+    private Integer tagId;
 
-    private int id;
+    private Integer id;
 
 
 }

@@ -27,7 +27,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Tag id;
+    private Integer id;
 
     @Size(min = 4,max = 10,message = "用户名应该在4到10个字符之间")
     private String name;
